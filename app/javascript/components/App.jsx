@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import EditModal from "./EditModal";
+import InvoiceModal from "./InvoiceModal";
 import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -52,7 +50,7 @@ function App() {
                         <th>Amount</th>
                         <th>Due Date</th>
                         <th>Status</th>
-                        <th>Edit</th>
+                        <th>View/Edit</th>
                     </tr>
                     </thead>
 
@@ -66,7 +64,9 @@ function App() {
                                     <td>{ invoice.amount }</td>
                                     <td>{ invoice.due_at }</td>
                                     <td>{ invoice.status }</td>
-                                    <th> <button onClick={() => openModal(invoice)}>Edit</button> </th>
+                                    <th> <button onClick={() => openModal(invoice)}>
+                                        View/Edit
+                                    </button> </th>
                                 </tr>
                             )
                         })
@@ -76,7 +76,7 @@ function App() {
             </Card.Body>
         </Card>
         {
-            modalIsOpen && <EditModal invoice={invoiceBeingEdited} modalIsOpen={modalIsOpen} onModalClose={closeModal}/>
+            modalIsOpen && <InvoiceModal invoice={invoiceBeingEdited} modalIsOpen={modalIsOpen} onModalClose={closeModal}/>
         }
 
     </Container>

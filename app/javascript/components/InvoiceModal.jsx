@@ -4,7 +4,7 @@ import axios from "axios";
 import Card from 'react-bootstrap/Card'
 import Container from "react-bootstrap/Container";
 
-function EditModal(props) {
+function InvoiceModal(props) {
     const {invoice, modalIsOpen, onModalClose } = props;
     const [invoiceBeingPurchased, setInvoiceBeingPurchased] = useState(false)
     const [invoiceBeingClosed, setInvoiceBeingClosed] = useState(false)
@@ -30,7 +30,10 @@ function EditModal(props) {
                         {
                             !invoiceBeingPurchased && !invoiceBeingClosed && <div>
                                 invoice # { invoice.token }
-                                <div> I am a modal! </div>
+                                Amount { invoice.amount }
+                                Due Date { invoice.due_at }
+                                Status { invoice.status }
+                                {/*Fees Accrued { invoice.fees_accrued }*/}
 
                                 {
                                     invoice.status === 'approved' && <button onClick={() => setInvoiceBeingPurchased(true)}>Purchase Invoice</button>
@@ -64,4 +67,4 @@ function EditModal(props) {
     </>)
 }
 
-export default EditModal;
+export default InvoiceModal;
