@@ -15,7 +15,7 @@ RSpec.describe Invoice, type: :model do
       let(:status) { 'closed' }
 
       it 'raises an error' do
-        expect { subject }.to raise_error(Invoice::InvalidStateError, /Only approved invoices can be set to purchased/)
+        expect { subject }.to raise_error(Invoice::InvalidStatusError, /Only approved invoices can be set to purchased/)
       end
     end
   end
@@ -34,7 +34,7 @@ RSpec.describe Invoice, type: :model do
       let(:status) { 'approved' }
 
       it 'raises an error' do
-        expect { subject }.to raise_error(Invoice::InvalidStateError, /Only purchased invoices can be set to closed/)
+        expect { subject }.to raise_error(Invoice::InvalidStatusError, /Only purchased invoices can be set to closed/)
       end
     end
   end

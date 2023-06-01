@@ -9,15 +9,25 @@ module Api
       def purchase
         invoice = Invoice.find(params[:invoice_id])
 
-        invoice.update!(status: 'purchased')
+        invoice.purchase!
         render json: invoice
+
+      rescue Invoice::InvalidStatusError => e
+        render json: {
+          error: e.to_s,
+        }, status: :bad_request
       end
 
       def close
         invoice = Invoice.find(params[:invoice_id])
 
-        invoice.update!(status: 'closed')
+        invoice.close!
         render json: invoice
+
+      rescue Invoice::InvalidStatusError => e
+        render json: {
+          error: e.to_s,
+        }, status: :bad_request
       end
     end
   end
