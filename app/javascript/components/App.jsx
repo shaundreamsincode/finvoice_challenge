@@ -1,11 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [invoices, setInvoices] = useState([]);
+
+  useEffect(() => {
+      axios.get('/api/v1/invoices').then((response) => {
+          setInvoices(response.data.invoices)
+          debugger
+      })
+  }, [])
+
+    console.log(invoices)
   return (
     <div>
-      <p>You clicked {count} times!</p>
-      <button onClick={() => setCount(count + 1)}>Click me</button>
+        test
     </div>
   );
 }
