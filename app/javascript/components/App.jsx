@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import EditModal from "./EditModal";
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Card from 'react-bootstrap/Card'
+
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   const [invoices, setInvoices] = useState([]);
@@ -34,45 +40,47 @@ function App() {
     }
 
   return (
-    <div>
-        test
+    <Container className="m-2">
+        <Card>
+            <Card.Body>
+                test
 
-        <table>
-            <thead>
-            <tr>
-                <th>Invoice #</th>
-                <th>Amount</th>
-                <th>Due Date</th>
-                <th>Status</th>
-            </tr>
-            </thead>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Invoice #</th>
+                        <th>Amount</th>
+                        <th>Due Date</th>
+                        <th>Status</th>
+                        <th>Edit</th>
+                    </tr>
+                    </thead>
 
-            <tbody>
-            {
-                invoices.map((invoice) => {
-                    console.log(invoice)
-                    return(
-                        <tr key={invoice.token}>
-                            <td>{ invoice.token }</td>
-                            <td>{ invoice.amount }</td>
-                            <td>{ invoice.due_at }</td>
-                            <td>{ invoice.status }</td>
-                            <th> <button onClick={() => openModal(invoice)}>Edit</button> </th>
-                        </tr>
-                    )
-                })
-            }
-            </tbody>
-        </table>
-
+                    <tbody>
+                    {
+                        invoices.map((invoice) => {
+                            console.log(invoice)
+                            return(
+                                <tr key={invoice.token}>
+                                    <td>{ invoice.token }</td>
+                                    <td>{ invoice.amount }</td>
+                                    <td>{ invoice.due_at }</td>
+                                    <td>{ invoice.status }</td>
+                                    <th> <button onClick={() => openModal(invoice)}>Edit</button> </th>
+                                </tr>
+                            )
+                        })
+                    }
+                    </tbody>
+                </table>
+            </Card.Body>
+        </Card>
         {
             modalIsOpen && <EditModal invoice={invoiceBeingEdited} modalIsOpen={modalIsOpen} onModalClose={closeModal}/>
         }
 
-    </div>
+    </Container>
   );
 }
 
 export default App;
-
-// const {invoice, modalIsOpen, onModalClose } = props;
