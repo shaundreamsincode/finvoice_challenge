@@ -19,9 +19,18 @@ function App() {
         setInvoiceBeingEdited(invoice)
     }
 
-    function closeModal() {
+    function closeModal(updatedInvoice=null) {
       setModalIsOpen(false)
         setInvoiceBeingEdited(null)
+
+        if (updatedInvoice) {
+            updateEditedInvoice(updatedInvoice)
+        }
+    }
+
+    function updateEditedInvoice(updatedInvoice) {
+      const invoiceIndexToUpdate = invoices.findIndex((invoice) => invoice.id === updatedInvoice.id)
+        invoices[invoiceIndexToUpdate] = updatedInvoice
     }
 
   return (
