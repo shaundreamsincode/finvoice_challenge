@@ -29,11 +29,11 @@ function InvoiceModal(props) {
                     <Card.Body>
                         {
                             !invoiceBeingPurchased && !invoiceBeingClosed && <div>
-                                invoice # { invoice.token }
-                                Amount { invoice.amount }
-                                Due Date { invoice.due_at }
-                                Status { invoice.status }
-                                {/*Fees Accrued { invoice.fees_accrued }*/}
+                                invoice # { invoice.token } <br/>
+                                Amount { invoice.amount } <br/>
+                                Due Date { invoice.due_at } <br/>
+                                Status { invoice.status } <br/>
+                                Fees Accrued { invoice.fees_accrued } <br/>
 
                                 {
                                     invoice.status === 'approved' && <button onClick={() => setInvoiceBeingPurchased(true)}>Purchase Invoice</button>
@@ -48,7 +48,6 @@ function InvoiceModal(props) {
                         {
                             invoiceBeingPurchased && <div>
                                 Are you sure you want to purchase the invoice { invoice.token }?
-                                <button onClick={() => setInvoiceBeingPurchased(false)}>Cancel</button>
                                 <button onClick={purchaseInvoice}>Purchase</button>
                             </div>
                         }
@@ -56,10 +55,12 @@ function InvoiceModal(props) {
                         {
                             invoiceBeingClosed && <div>
                                 Are you sure you want to close the invoice { invoice.token }?
-                                <button onClick={() => setInvoiceBeingClosed(false)}>Cancel</button>
+                                <button onClick={() => setInvoiceBeingClosed(false)}>Close</button>
                                 <button onClick={closeInvoice}>Close</button>
                             </div>
                         }
+
+                        <button onClick={onModalClose}>Cancel</button>
                     </Card.Body>
                 </Card>
             </Container>

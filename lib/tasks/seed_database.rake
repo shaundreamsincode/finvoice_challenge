@@ -3,6 +3,7 @@
       Invoice.create!(
         token: Faker::Alphanumeric.alpha(number: 10),
         amount: Faker::Number.decimal,
+        fees_accrued: Faker::Number.decimal,
         due_at: Faker::Date.birthday,
         status: Invoice::STATUSES.values.sample
       )

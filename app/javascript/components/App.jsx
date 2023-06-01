@@ -48,6 +48,7 @@ function App() {
                     <tr>
                         <th>Invoice #</th>
                         <th>Amount</th>
+                        <th>Fees Accrued</th>
                         <th>Due Date</th>
                         <th>Status</th>
                         <th>View/Edit</th>
@@ -62,6 +63,7 @@ function App() {
                                 <tr key={invoice.token}>
                                     <td>{ invoice.token }</td>
                                     <td>{ invoice.amount }</td>
+                                    <td>{ invoice.fees_accrued }</td>
                                     <td>{ invoice.due_at }</td>
                                     <td>{ invoice.status }</td>
                                     <th> <button onClick={() => openModal(invoice)}>

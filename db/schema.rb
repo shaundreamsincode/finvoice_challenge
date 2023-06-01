@@ -14,6 +14,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_022150) do
   create_table "invoices", force: :cascade do |t|
     t.text "token"
     t.decimal "amount"
+    t.decimal "fees_accrued"
     t.text "due_at"
     t.text "status"
     t.datetime "created_at", null: false
