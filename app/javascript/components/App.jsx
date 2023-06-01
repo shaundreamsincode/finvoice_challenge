@@ -1,14 +1,29 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import EditModal from "./EditModal";
 
 function App() {
   const [invoices, setInvoices] = useState([]);
+  const [modalIsOpen, setModalIsOpen] = useState(false)
+  const [invoiceBeingEdited, setInvoiceBeingEdited] = useState(null);
 
   useEffect(() => {
       axios.get('/api/v1/invoices').then((response) => {
           setInvoices(response.data)
       })
   }, [])
+
+    // todo - fix formatting...
+    function openModal(invoice) {
+        setModalIsOpen(true)
+        setInvoiceBeingEdited(invoice)
+    }
+
+    function closeModal() {
+      setModalIsOpen(false)
+        setInvoiceBeingEdited(null)
+    }
+
   return (
     <div>
         test
@@ -33,14 +48,22 @@ function App() {
                             <td>{ invoice.amount }</td>
                             <td>{ invoice.due_at }</td>
                             <td>{ invoice.status }</td>
+                            <th> <button onClick={() => openModal(invoice)}>Edit</button> </th>
                         </tr>
                     )
                 })
             }
             </tbody>
         </table>
+
+        {
+            modalIsOpen && <EditModal invoice={invoiceBeingEdited} modalIsOpen={modalIsOpen} onModalClose={closeModal}/>
+        }
+
     </div>
   );
 }
 
 export default App;
+
+// const {invoice, modalIsOpen, onModalClose } = props;
