@@ -13,7 +13,6 @@
 ActiveRecord::Schema[7.0].define(version: 2023_06_01_022150) do
   create_table "invoices", force: :cascade do |t|
     t.text "token"
-    t.text "string"
     t.decimal "amount"
     t.text "due_at"
     t.text "status"

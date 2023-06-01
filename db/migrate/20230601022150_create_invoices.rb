@@ -1,7 +1,7 @@
 class CreateInvoices < ActiveRecord::Migration[7.0]
   def change
     create_table :invoices do |t|
-      t.text :token, :string
+      t.text :token
       t.decimal :amount
       t.text :due_at
       t.text :status
