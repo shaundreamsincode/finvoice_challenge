@@ -25,4 +25,8 @@ class Invoice < ApplicationRecord
 
     update!(status: STATUSES[:closed])
   end
+
+  def as_json
+    super.merge('scan_filename' => scan&.filename&.to_s)
+  end
 end

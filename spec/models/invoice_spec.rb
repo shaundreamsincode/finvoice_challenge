@@ -39,5 +39,28 @@ RSpec.describe Invoice, type: :model do
     end
   end
 
+  describe 'as_json' do
+    subject { invoice.as_json }
+    let!(:invoice) { create(:invoice, invoice_params) }
+    let(:invoice_params) { { token: 'abc123', amount: 50.0, fees_accrued: 1.0, due_at: Date.new(2020, 1,1 ), status: 'closed' } }
 
+    it 'returns the invoice as JSON' do
+      expect(subject).to include(
+                           'id' => invoice.id,
+                           'token' => 'abc123',
+                           'amount' => '50.0',
+                           'fees_accrued' => '1.0',
+                           'due_at' => '2020-1-1',
+                           'status' => 'closed'
+                         )
+    end
+
+    context 'when the invoice has a scanned attachment' do
+      let!(:invoice) { create(:invoice, :with_image, invoice_params) }
+
+      it 'returns the filename of the scanned attachment' do
+        expect(subject).to include('scan_filename' => 'test.png')
+      end
+    end
+  end
 end

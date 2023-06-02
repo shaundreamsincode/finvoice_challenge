@@ -1,27 +1,17 @@
 module Api
   module V1
     class InvoicesController < ApplicationController
-      include ActiveStorage::SetCurrent
-
-      # before_action do
-      #   ActiveStorage::Current.url_options = { protocol: request.protocol, host: request.host, port: request.port }
-      # end
 
       def index
         invoices = Invoice.all
-
-        invoice = invoices.first
-        scan = invoice.scan
-        byebug
-        url = scan.url
-        render json: invoices
+        render json: invoices.map { |invoice| invoice.as_json }
       end
 
       def purchase
         invoice = Invoice.find(params[:invoice_id])
 
         invoice.purchase!
-        render json: invoice
+        render json: invoice.as_json
 
       rescue Invoice::InvalidStatusError => e
         render json: {
@@ -33,7 +23,7 @@ module Api
         invoice = Invoice.find(params[:invoice_id])
 
         invoice.close!
-        render json: invoice
+        render json: invoice.as_json
 
       rescue Invoice::InvalidStatusError => e
         render json: {

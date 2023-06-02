@@ -42,3 +42,5 @@
 /.idea
 
 /.yarn
+
+.byebug_history

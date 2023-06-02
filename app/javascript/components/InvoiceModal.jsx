@@ -34,6 +34,7 @@ function InvoiceModal(props) {
                                 Due Date { invoice.due_at } <br/>
                                 Status { invoice.status } <br/>
                                 Fees Accrued { invoice.fees_accrued } <br/>
+                                Scan Name { invoice.scan_filename } <br/>
 
                                 {
                                     invoice.status === 'approved' && <button onClick={() => setInvoiceBeingPurchased(true)}>Purchase Invoice</button>
