@@ -1,5 +1,6 @@
 class Invoice < ApplicationRecord
   class InvalidStatusError < StandardError; end
+  has_one_attached :scan
 
   STATUSES = {
     created: 'created',

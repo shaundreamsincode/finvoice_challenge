@@ -15,7 +15,11 @@ Rails.application.configure do
   config.consider_all_requests_local = true
 
   # Enable server timing
+
+  # Store files locally.
   config.server_timing = true
+
+  config.active_storage.service = :local
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
