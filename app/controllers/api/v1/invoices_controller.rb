@@ -1,7 +1,6 @@
 module Api
   module V1
     class InvoicesController < ApplicationController
-
       def index
         invoices = Invoice.all
         render json: invoices.map { |invoice| invoice.as_json }
