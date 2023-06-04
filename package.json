@@ -13,8 +13,5 @@
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=assets --loader:.js=jsx"
-  },
-  "devDependencies": {
-    "prettier": "2.8.8"
   }
 }
